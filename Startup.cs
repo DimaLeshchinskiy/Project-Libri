@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http;
+using ProjectLibri.Graph.Extensions;
+using ProjectLibri.Graph;
 
 namespace ProjectLibri
 {
@@ -23,20 +21,43 @@ namespace ProjectLibri
         }
 
         public IConfiguration Configuration { get; }
+        public const string ObjectIdentifierType = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+        public const string TenantIdType = "http://schemas.microsoft.com/identity/claims/tenantid";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAd");
-
-            services.AddRazorPages().AddMvcOptions(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                              .RequireAuthenticatedUser()
-                              .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }).AddMicrosoftIdentityUI();
-            services.AddControllersWithViews();
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddAzureAd(options => Configuration.Bind("AzureAd", options))
+            .AddCookie();
+
+            services.AddMvc();
+            services.AddControllers();
+
+            // Add application services.
+            services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
+            services.AddSingleton<IGraphServiceClientFactory, GraphServiceClientFactory>();
+            services.AddSingleton<IGraphUtil, GraphUtil>();
+
+            services.Configure<HstsOptions>(options =>
+            {
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(365);
+            });
+
+            services.AddHealthChecks();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
