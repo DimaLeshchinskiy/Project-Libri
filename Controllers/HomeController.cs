@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using ProjectLibri.Config;
 using ProjectLibri.Service;
+using ProjectLibri.Specification;
 
 namespace ProjectLibri.Controllers
 {
@@ -27,6 +28,11 @@ namespace ProjectLibri.Controllers
                 Debug.WriteLine(actualUser.ToString());
 
             Debug.WriteLine(_config.isDev);
+
+            ExampleSpecification spec = new ExampleSpecification();
+            spec.value2 = "VALUE2";
+            spec.value3 = "VALUE3";
+            Debug.WriteLine(spec.GetSql());
 
             return View();
         }
