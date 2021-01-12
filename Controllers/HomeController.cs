@@ -1,30 +1,26 @@
 ﻿using System.Diagnostics;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProjectLibri.Graph;
-
+using ProjectLibri.Service;
 
 namespace ProjectLibri.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IGraphUtil _graphUtil;
+        private readonly IUserService _userService;
 
-        public HomeController(IGraphUtil graphUtil)
+        public HomeController(IUserService userService)
         {
-            _graphUtil = graphUtil;
+            _userService = userService;
         }
 
-        [AllowAnonymous]
-        // Load user's profile.
-        public async Task<IActionResult> Index(string email)
+        public async Task<IActionResult> Index()
         {
-            var graphUser = await _graphUtil.GetUser(User, HttpContext);
-
-            Debug.WriteLine(graphUser.ToString());
+            var actualUser = await _userService.GetUser(HttpContext);
+            if(actualUser != null)
+                Debug.WriteLine(actualUser.ToString());
 
             return View();
         }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
 using ProjectLibri.Graph.Extensions;
 using ProjectLibri.Graph;
+using ProjectLibri.Service;
 
 namespace ProjectLibri
 {
@@ -49,7 +50,7 @@ namespace ProjectLibri
             // Add application services.
             services.AddSingleton<IGraphAuthProvider, GraphAuthProvider>();
             services.AddSingleton<IGraphServiceClientFactory, GraphServiceClientFactory>();
-            services.AddSingleton<IGraphUtil, GraphUtil>();
+            services.AddSingleton<IUserService, UserService>();
 
             services.Configure<HstsOptions>(options =>
             {

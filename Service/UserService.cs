@@ -1,27 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using ProjectLibri.Graph;
+using ProjectLibri.Models;
+using System.Diagnostics;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace ProjectLibri.Graph
+namespace ProjectLibri.Service
 {
-    public class GraphUtil : IGraphUtil
+    public class UserService : IUserService
     {
         private readonly IGraphServiceClientFactory _graphServiceClientFactory;
 
-        public GraphUtil(IGraphServiceClientFactory graphServiceClientFactory)
+        public UserService(IGraphServiceClientFactory graphServiceClientFactory)
         {
             _graphServiceClientFactory = graphServiceClientFactory;
         }
 
-        public async Task<GraphUser> GetUser(ClaimsPrincipal user, HttpContext HttpContext)
+        public async Task<User> GetUser(HttpContext HttpContext)
         {
+
+            var user = HttpContext.User;
 
             if (!user.Identity.IsAuthenticated)
                 return null;
+
             // Get users's email.
             string email = user.FindFirst("preferred_username")?.Value;
 
@@ -37,14 +40,14 @@ namespace ProjectLibri.Graph
                 WriteIndented = true
             };
 
-            GraphUser graphUser = JsonSerializer.Deserialize<GraphUser>(json, options);
+            User graphUser = JsonSerializer.Deserialize<User>(json, options);
 
             return graphUser;
         }
     }
 
-    public interface IGraphUtil
+    public interface IUserService
     {
-        Task<GraphUser> GetUser(ClaimsPrincipal user, HttpContext HttpContext);
+        Task<User> GetUser(HttpContext HttpContext);
     }
 }

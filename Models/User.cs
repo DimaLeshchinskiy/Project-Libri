@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ProjectLibri.Graph
+namespace ProjectLibri.Models
 {
-    public class GraphUser
+    public class User
     {
         public String displayName { get; set; }
         public String givenName { get; set; }
@@ -16,6 +19,5 @@ namespace ProjectLibri.Graph
             return $"displayName: {displayName}, givenName: {givenName}, mail: {mail}, surname: {surname}," +
                    $"userPrincipalName: {userPrincipalName}, id: {id}";
         }
-
     }
 }
