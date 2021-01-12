@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using ProjectLibri.Graph.Extensions;
 using ProjectLibri.Graph;
 using ProjectLibri.Service;
+using ProjectLibri.Config;
 
 namespace ProjectLibri
 {
@@ -28,6 +29,9 @@ namespace ProjectLibri
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //setup Config.Config
+            services.Configure<AppConfig>(Configuration.GetSection(AppConfig.SectionName));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using ProjectLibri.Config;
 using ProjectLibri.Service;
 
 namespace ProjectLibri.Controllers
@@ -9,11 +11,13 @@ namespace ProjectLibri.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly AppConfig _config;
         private readonly IUserService _userService;
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IOptions<AppConfig> config)
         {
             _userService = userService;
+            _config = config.Value;
         }
 
         public async Task<IActionResult> Index()
@@ -21,6 +25,8 @@ namespace ProjectLibri.Controllers
             var actualUser = await _userService.GetUser(HttpContext);
             if(actualUser != null)
                 Debug.WriteLine(actualUser.ToString());
+
+            Debug.WriteLine(_config.isDev);
 
             return View();
         }
