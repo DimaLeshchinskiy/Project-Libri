@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectLibri.Models
 {
-    public class User
+    public class User : IModel
     {
         public String displayName { get; set; }
         public String givenName { get; set; }
@@ -14,10 +14,11 @@ namespace ProjectLibri.Models
         public String userPrincipalName { get; set; }
         public String id { get; set; }
 
-        public String ToString()
-        {
-            return $"displayName: {displayName}, givenName: {givenName}, mail: {mail}, surname: {surname}," +
-                   $"userPrincipalName: {userPrincipalName}, id: {id}";
-        }
+        //public String ToString()
+        //{
+        //    return $"displayName: {displayName}, givenName: {givenName}, mail: {mail}, surname: {surname}," +
+        //           $"userPrincipalName: {userPrincipalName}, id: {id}";
+        //}
+      
     }
 }
