@@ -2,7 +2,169 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- onsubmit akce brání odeslání formuláře -->
+<!-- k selectum se postupne doplni dalsi moznosti -->
+<form class="form-inline mx-auto justify-content-center pt-3" onsubmit="return false;">
+    <div class="form-group mb-0">
+        <label class="py-1 mb-0">
+            <input type="text" name="search" class="form-control mx-sm-2" placeholder="Zadejte hledanou frázi">
+        </label>
+        <input type="submit" class="btn btn-info mx-1 mb-1 mb-sm-0" value="Vyhledat">
+    </div>
+    <div class="form-group row mx-0 mw-100 pt-sm-3 collapse" id="filtry">
+        <label class="col-12 col-sm-6 col-xl-3 px-2 py-1 mb-0 justify-content-end justify-content-xl-center">
+            Typ: 
+            <select name="type" class="form-control mx-sm-3">
+                <option value="" selected>Nevybráno</option>
+                <option value="Epika">Epika</option>
+                <option value="Lyrika">Lyrika</option>
+                <option value="Drama">Drama</option>
+            </select>
+        </label>
+        <label class="col-12 col-sm-6 col-xl-3 px-2 py-1 mb-0 justify-content-start justify-content-xl-center">
+            Funkce: 
+            <select name="type" class="form-control mx-sm-3">
+                <option value="" selected>Nevybráno</option>
+                <option value="poznavaci">poznávací</option>
+                <option value="vychovna">výchovná</option>
+                <option value="zabavna">zábavná</option>
+                <option value="esteticka">estetická</option>
+                <option value="formativní">formativní</option>
+                <option value="spolecenska">společenská</option>
+            </select>
+        </label>
+        <label class="col-12 col-sm-6 col-xl-3 px-2 py-1 mb-0 justify-content-end justify-content-xl-center">
+            Žánr: 
+            <select name="type" class="form-control mx-sm-3">
+                <option value="" selected>Nevybráno</option>
+                <option value="detektivka">Detektivka</option>
+                <option value="roman">Román</option>
+            </select>
+        </label>
+        <label class="col-12 col-sm-6 col-xl-3 px-2 py-1 mb-0 justify-content-start justify-content-xl-center">
+            Období: 
+            <select name="type" class="form-control mx-sm-3">
+                <option value="" selected>Nevybráno</option>
+                <option value="1900-1950">1. pol. 20. století</option>
+                <option value="1950-2000">2. pol. 20. století</option>
+            </select>
+        </label>
+        <div class="col-12 text-center">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#filtry" aria-expanded="false" aria-controls="filtry">Skrýt filtry</button>
+        </div>
+    </div>
+    <div class="m-0 p-0 w-100 text-center">
+        <button class="btn btn-link hide-me" data-toggle="collapse" data-target="#filtry" aria-expanded="false" aria-controls="filtry">Zobrazit více filtrů</button>
+    </div>
+</form>
+<!-- výpis knih -->
+<div class="p-0 m-0 row align-items-end">
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/47/46/Small.07.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Detektivka</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/54/40/Small.32.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Román</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-warning mt-2 w-100">Rezervovat</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/53/62/Small.51.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Pohádka</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-warning mt-2 w-100">Rezervovat</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/29/35/Small.42.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Balady</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/46/19/Small.87.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Povídky</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/44/03/Small.70.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Encyklopedie</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/53/41/Small.06.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Historický román</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-warning mt-2 w-100">Rezervovat</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/52/51/Small.74.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Komedie</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/35/25/Small.39.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Tragedie</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/55/81/Small.46.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Sbírka poezie</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/52/95/Small.04.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Učebnice</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-warning mt-2 w-100">Rezervovat</a>
+    </div>
+    <div class="px-3 py-4 col-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="text-dark text-decoration-none" href="book.html?id=">
+            <img class="d-block w-100" alt="Fotka knihy" src="https://web2.mlp.cz/koweb/00/04/50/23/Small.65.jpg">
+            <span class="d-block pt-2 font-weight-bold">Název knihy</span>
+            <span class="d-block pb-2">Autor knihy</span>
+            <span class="d-block small">Slovník</span>
+        </a>
+        <a href="book.html?id=#getBook" class="btn btn-success mt-2 w-100">Půjčit</a>
+    </div>
 </div>
