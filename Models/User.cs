@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjectLibri.Models
 {
@@ -14,11 +11,6 @@ namespace ProjectLibri.Models
         public String userPrincipalName { get; set; }
         public String id { get; set; }
 
-        //public String ToString()
-        //{
-        //    return $"displayName: {displayName}, givenName: {givenName}, mail: {mail}, surname: {surname}," +
-        //           $"userPrincipalName: {userPrincipalName}, id: {id}";
-        //}
       
     }
 }
