@@ -10,7 +10,13 @@ namespace ProjectLibri.Models
         public String surname { get; set; }
         public String userPrincipalName { get; set; }
         public String id { get; set; }
+        public String className { get; set;}
+        public String role { get; set;}
+        public List<Loan> loans { get; set;}
+        public List<Reservation> reservations { get; set;}
 
-      
+
+
+
     }
 }
