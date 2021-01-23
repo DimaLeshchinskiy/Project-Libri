@@ -37,6 +37,11 @@ namespace ProjectLibri.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Privacy()
+        {
+            return View();
+        }
+
     }
 }
 
