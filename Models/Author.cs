@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectLibri.Models
 {
-    public class Author
+    public class Author : IModel
     {
 
         public String id { get; set; }
