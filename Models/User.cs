@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ProjectLibri.Models
 {
@@ -12,8 +13,8 @@ namespace ProjectLibri.Models
         public String id { get; set; }
         public String className { get; set;}
         public Role role { get; set;}
-        public List<Loan> loans { get; set;}
-        public List<Reservation> reservations { get; set;}
+        //public List<Loan> loans { get; set;}
+        //public List<Reservation> reservations { get; set;}
 
 
 
