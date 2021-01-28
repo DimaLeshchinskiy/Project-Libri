@@ -9,10 +9,10 @@ namespace ProjectLibri.Components
     public class NotificationsViewComponent : ViewComponent
     {
 
-        /*public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return;
-        }*/
+            return View();
+        }
 
     }
 }

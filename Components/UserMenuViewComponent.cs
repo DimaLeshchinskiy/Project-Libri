@@ -9,10 +9,10 @@ namespace ProjectLibri.Components
     public class UserMenuViewComponent : ViewComponent
     {
 
-        /*public async Task<IViewComponentResult> InvokeAsync()
-        {
-            return;
-        }*/
+       public async Task<IViewComponentResult> InvokeAsync()
+       {
+            return View();
+       }
 
     }
 }
