@@ -1,0 +1,42 @@
+/* "border" pro zvýraznění všech elementů, neovlivňuje jejich rozměry */
+/*
+* {
+    outline: 1px solid red;
+}
+*/
+
+
+/*############# STYLOVÁNÍ HLAVIČKY STRÁNKY #############*/
+
+/* pozicování položek dropdownů */
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* červený puntík na hamburger menu */
+.navbar-toggler-icon {
+    position: relative;
+}
+.navbar-toggler-icon::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    background-color: red;
+    border-radius:50%;
+    width: 10px;
+    height: 10px;
+}
+
+
+/*############# STYLOVÁNÍ TĚLA STRÁNKY #############*/
+
+/* mizející button při práci s collapse */
+.hide-me[aria-expanded="true"] {
+    display: none;
+}
+
+select {
+    min-width: 200px;
+}
