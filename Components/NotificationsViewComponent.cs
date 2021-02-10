@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectLibri.Models;
+using ProjectLibri.Service;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -11,7 +13,10 @@ namespace ProjectLibri.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            NotificationService service = new NotificationService();
+            var notifications = service.getAll();
+
+            return View(notifications);
         }
 
     }
