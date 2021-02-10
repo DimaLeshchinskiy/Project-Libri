@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectLibri.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,15 +8,15 @@ namespace ProjectLibri.Service
 {
     public class FunctionService
     {
-        public List<> GetAllFunctions()
+        public List<Function> GetAllFunctions()
         {
-            List<String> list = new List<string>();
+            List<Function> list = new List<Function>();
             Random rnd = new Random();
 
-            String A = GetRandomFunction();
-            String B = GetRandomFunction();
-            String C = GetRandomFunction();
-            String D = GetRandomFunction();
+            Function A = GetRandomFunction();
+            Function B = GetRandomFunction();
+            Function C = GetRandomFunction();
+            Function D = GetRandomFunction();
 
             list.Add(A);
             list.Add(B);
@@ -25,11 +26,14 @@ namespace ProjectLibri.Service
             return list;
         }
 
-        private String GetRandomFunction()
+        private Function GetRandomFunction()
         {
             Random rnd = new Random();
             int a = rnd.Next(10);
-            String func;
+            String func = "";
+
+            Function function = new Function();
+
 
             switch(a)
             {
@@ -42,10 +46,15 @@ namespace ProjectLibri.Service
                 case 6: func="Funkce6"; break;
                 case 7: func="Funkce7"; break;
                 case 8: func="Funkce8"; break;
-                case 9: func="Funkce9"; break;       
+                case 9: func="Funkce9"; break;
             }
 
-            return func;
+            function.title = func;
+            function.id = func;
+            function.url = func;
+
+
+            return function;
         }
     }
 }
