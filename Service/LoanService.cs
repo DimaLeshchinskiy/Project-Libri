@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectLibri.Service
 {
-    public class LoanService
+    public class FunctionService
     {
 
     }
