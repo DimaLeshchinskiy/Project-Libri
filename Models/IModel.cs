@@ -18,6 +18,8 @@ namespace ProjectLibri.Models
             }
             return result.Substring(0, result.Length - 2) + " }";
         }
+
+        [Obsolete("ToJson is deprecated, use Controller.Json(this) instead")]
         public string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
