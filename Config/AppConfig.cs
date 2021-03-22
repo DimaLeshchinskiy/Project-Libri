@@ -7,6 +7,8 @@ namespace ProjectLibri.Config
         public static readonly String SectionName = "AppConfig";
 
         public bool isDev { set; get; }
-        
+
+        public String ConnectionString { set; get; }
+
     }
 }
