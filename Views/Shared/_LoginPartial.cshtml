@@ -1,5 +1,5 @@
 ﻿<ul class="navbar-nav ml-auto">
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated || true)
     {
         @await Component.InvokeAsync("Notifications")
         @await Component.InvokeAsync("UserMenu")

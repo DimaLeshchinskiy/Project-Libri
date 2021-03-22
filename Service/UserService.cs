@@ -44,10 +44,24 @@ namespace ProjectLibri.Service
 
             return graphUser;
         }
+
+        public User GetUser()
+        {
+            User user = new User();
+            user.displayName = "Fake user";
+            user.givenName = "Fake";
+            user.surname = "user";
+            user.id = "aaaaaaaaa";
+            user.mail = "fake@user.com";
+            user.className = "c3b";
+
+            return user;
+        }
     }
 
     public interface IUserService
     {
         Task<User> GetUser(HttpContext HttpContext);
+        User GetUser();
     }
 }

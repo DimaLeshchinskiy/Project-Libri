@@ -9,7 +9,6 @@ using ProjectLibri.Specification;
 
 namespace ProjectLibri.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly AppConfig _config;
@@ -23,7 +22,7 @@ namespace ProjectLibri.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var actualUser = await _userService.GetUser(HttpContext);
+            var actualUser = _userService.GetUser();
             if(actualUser != null)
                 Debug.WriteLine(actualUser.ToString());
 
